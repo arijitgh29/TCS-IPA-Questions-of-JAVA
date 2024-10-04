@@ -62,17 +62,28 @@ public class footwearProgram
 		}
 	}
 	
-	public static Footwear getSecondHighestPriceByBrand(Footwear[] ft, String name)
+	public static Footwear getSecondHighestPriceByBrand(Footwear[] ft, String name) 
 	{
-		for(int i =0; i<ft.length; i++)
-		{
-			if(ft[i].getName().equalsIgnoreCase(name))
-			{
-				return ft[i];
-			}
-		}
-		return null;
-	}
+        List<Footwear> matchingFootwear = new ArrayList<>();
+        
+        // Collect footwears matching the brand name
+        for (Footwear footwear : ft) {
+            if (footwear.getName().equalsIgnoreCase(name)) {
+                matchingFootwear.add(footwear);
+            }
+        }
+
+        // If there are less than two matching items, return null
+        if (matchingFootwear.size() < 2) {
+            return null;
+        }
+
+        // Sort by price in descending order
+        matchingFootwear.sort((f1, f2) -> Integer.compare(f2.getPrice(), f1.getPrice()));
+
+        // Return the second highest priced footwear
+        return matchingFootwear.get(1);
+    }
 }
 
 class Footwear
