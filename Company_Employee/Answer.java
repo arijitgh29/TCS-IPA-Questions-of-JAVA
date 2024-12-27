@@ -98,11 +98,17 @@ class Company
     }
     public double getAverageSalary(Employee[] e)
     {
-        double sum = 0;
+        double sum = 0.0;
         for(int i=0; i<e.length; i++)
         {
             sum+=e[i].getSalary();
         }
+        /*
+         *  double sum = 0.0;
+            for (Employee emp : e) {
+                sum += emp.getSalary();
+            }
+         */
         if(sum>0)
         {
             double avg = sum/e.length;
@@ -121,6 +127,13 @@ class Company
                 maxSal = e[i].getSalary();
             }
         }
+        /*
+         * for (Employee emp : e) {
+    if (maxSal < emp.getSalary()) {
+        maxSal = emp.getSalary();
+    }
+}
+         */
         return maxSal;
     }
 
